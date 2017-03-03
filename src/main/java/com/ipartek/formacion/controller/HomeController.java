@@ -33,7 +33,7 @@ public class HomeController {
 
 		model.addAttribute("serverTime", formattedDate);
 
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/lanzar", method = RequestMethod.GET)
@@ -42,7 +42,7 @@ public class HomeController {
 
 		model.addAttribute("afortunado", "El afortunado es Periko el de los palotes");
 
-		return "home";
+		return "index";
 	}
 
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
@@ -51,7 +51,7 @@ public class HomeController {
 
 		model.addAttribute("afortunado", "El afortunado es Periko el de los palotes");
 
-		return "home";
+		return "index";
 	}
 
 }

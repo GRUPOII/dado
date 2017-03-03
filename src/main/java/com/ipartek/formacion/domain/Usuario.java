@@ -1,13 +1,15 @@
 package com.ipartek.formacion.domain;
 
+import java.sql.Timestamp;
+
 public class Usuario {
 
 	// ATRIBUTOS
 	private int id;
 	private String nombre;
-	private String fechaAlta;
-	private String fechaModificacion;
-	private String fechaBaja;
+	private Timestamp fechaAlta;
+	private Timestamp fechaModificacion;
+	private Timestamp fechaBaja;
 
 	// CONSTRUCTOR
 
@@ -16,7 +18,7 @@ public class Usuario {
 
 	}
 
-	public Usuario(int id, String nombre, String fechaAlta, String fechaModificacion, String fechaBaja) {
+	public Usuario(int id, String nombre, Timestamp fechaAlta, Timestamp fechaModificacion, Timestamp fechaBaja) {
 		super();
 		this.id = id;
 		this.nombre = nombre;
@@ -43,27 +45,27 @@ public class Usuario {
 		this.nombre = nombre;
 	}
 
-	public String getFechaAlta() {
+	public Timestamp getFechaAlta() {
 		return fechaAlta;
 	}
 
-	public void setFechaAlta(String fechaAlta) {
+	public void setFechaAlta(Timestamp fechaAlta) {
 		this.fechaAlta = fechaAlta;
 	}
 
-	public String getFechaModificacion() {
+	public Timestamp getFechaModificacion() {
 		return fechaModificacion;
 	}
 
-	public void setFechaModificacion(String fechaModificacion) {
+	public void setFechaModificacion(Timestamp fechaModificacion) {
 		this.fechaModificacion = fechaModificacion;
 	}
 
-	public String getFechaBaja() {
+	public Timestamp getFechaBaja() {
 		return fechaBaja;
 	}
 
-	public void setFechaBaja(String fechaBaja) {
+	public void setFechaBaja(Timestamp fechaBaja) {
 		this.fechaBaja = fechaBaja;
 	}
 
