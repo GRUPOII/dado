@@ -3,7 +3,7 @@
 
 <h1>Listado de usuarios</h1>
 
-<table class="tablePlugin">
+<table class="tablePlugin" cellspacing="0" width="100%">
 	<thead>
 		<tr>
 			<th>ID</th>

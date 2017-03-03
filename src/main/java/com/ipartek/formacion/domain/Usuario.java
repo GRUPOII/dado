@@ -15,7 +15,8 @@ public class Usuario {
 
 	public Usuario() {
 		super();
-
+		this.id = -1;
+		this.nombre = "";
 	}
 
 	public Usuario(int id, String nombre, Timestamp fechaAlta, Timestamp fechaModificacion, Timestamp fechaBaja) {
@@ -25,10 +26,10 @@ public class Usuario {
 		this.fechaAlta = fechaAlta;
 		this.fechaModificacion = fechaModificacion;
 		this.fechaBaja = fechaBaja;
-
 	}
 
 	// GETTERS AND SETTERS
+
 	public int getId() {
 		return id;
 	}
@@ -70,6 +71,7 @@ public class Usuario {
 	}
 
 	// TO STRING
+
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nombre=" + nombre + ", fechaAlta=" + fechaAlta + ", fechaModificacion="
