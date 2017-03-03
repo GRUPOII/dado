@@ -47,7 +47,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 		} catch (EmptyResultDataAccessException e) {
 
-			this.logger.warn("No existen recetas todavia");
+			this.logger.warn("No existen usuarios todavia");
 
 		} catch (Exception e) {
 
@@ -67,7 +67,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 		} catch (EmptyResultDataAccessException e) {
 
-			this.logger.warn("No existen recetas todavia");
+			this.logger.warn("No existen usuarios todavia");
 
 		} catch (Exception e) {
 
