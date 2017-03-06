@@ -9,8 +9,8 @@
 
 <html>
 <head>
-	<title>Dado</title>
-	<base href="/dado/" /> 
+	<title>Dado-eq2</title>
+	<base href="/dado-eq2/" /> 
 	
 	
 	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,7 +36,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Web Dado</a>
+            <a class="navbar-brand" href="#">Web Dado-eq2</a>
           </div>
           <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">

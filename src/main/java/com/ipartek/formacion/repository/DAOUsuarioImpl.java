@@ -49,7 +49,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 	private static final String SQL_GET_ALL = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` ORDER BY `id` ASC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` WHERE `id` = ?";
-	private static final String SQL_INSERT = "INSERT INTO `dado`.`usuario` (`nombre`) VALUES (?);";
+	private static final String SQL_INSERT = "INSERT INTO `usuario` (`nombre`) VALUES (?);";
 
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
 
