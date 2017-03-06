@@ -50,8 +50,9 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_GET_ALL = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` ORDER BY `id` ASC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` WHERE `id` = ?";
 	private static final String SQL_INSERT = "INSERT INTO `usuario` (`nombre`) VALUES (?);";
-
+	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
+	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada as t, usuario as u WHERE u.id = t.usuario_id AND u.fecha_baja IS NULL GROUP BY u.nombre ORDER BY Lanzamientos DESC LIMIT 500;";
 
 	@Override()
 	public List<Usuario> getAll() {
@@ -130,19 +131,41 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 	@Override()
 	public boolean update(Usuario u) {
-		// TODO Auto-generated method stub
-		return false;
+		LOG.trace("update " + u);
+		boolean resul = false;
+		int affectedRows = -1;
+
+		try {
+
+			Object[] argumentos = { u.getNombre(), u.getId() };
+			affectedRows = this.jdbcTemplate.update(SQL_UPDATE, argumentos);
+
+			if (affectedRows == 1) {
+				resul = true;
+			}
+
+		} catch (Exception e) {
+
+			this.LOG.error(e.getMessage());
+
+		}
+
+		return resul;
 	}
 
 	@Override()
 	public boolean delete(int id) {
-		this.LOG.trace("eliminar usuario " + id);
+		LOG.trace("eliminar usuario " + id);
 		boolean resul = false;
+		int affectedRows = -1;
 
 		try {
 
-			id = this.jdbcTemplate.update(SQL_DELETE, id);
+			affectedRows = this.jdbcTemplate.update(SQL_DELETE, id);
 
+			if (affectedRows == 1) {
+				resul = true;
+			}
 		} catch (DataIntegrityViolationException e) {
 			this.LOG.warn(e.getMessage());
 
@@ -153,6 +176,26 @@ public class DAOUsuarioImpl implements DAOUsuario {
 		}
 
 		return resul;
+	}
+
+	@Override
+	public List<Usuario> ranking() {
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+
+		try {
+
+			lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_RANKING, new UsuarioMapper());
+
+		} catch (EmptyResultDataAccessException e) {
+
+			this.LOG.warn("No existen usuarios todavia");
+
+		} catch (Exception e) {
+
+			this.LOG.error(e.getMessage());
+
+		}
+		return lista;
 	}
 
 }

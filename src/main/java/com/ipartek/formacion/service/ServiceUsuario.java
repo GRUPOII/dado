@@ -23,6 +23,13 @@ public interface ServiceUsuario {
 	List<Usuario> listar();
 
 	/**
+	 * lista todos los usuarios ordenados por el numero de tiradas
+	 * 
+	 * @return array de todos los usuarios
+	 */
+	List<Usuario> ranking();
+
+	/**
 	 * Devuelve un usuario buscado a traves de su id
 	 * 
 	 * @param id

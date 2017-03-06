@@ -32,6 +32,12 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 	}
 
 	@Override()
+	public List<Usuario> ranking() {
+		this.LOG.trace("ranking usuarios");
+		return this.daoUsuario.ranking();
+	}
+
+	@Override()
 	public Usuario buscarPorId(int id) {
 		this.LOG.trace("Buscamos usuario por id: " + id);
 		Usuario usuario = this.daoUsuario.getById(id);
@@ -46,14 +52,14 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 
 	@Override()
 	public boolean modificar(Usuario u) {
-		// TODO Auto-generated method stub
-		return false;
+		this.LOG.trace("Modificamos usuario: " + u);
+		return this.daoUsuario.update(u);
 	}
 
 	@Override()
 	public boolean eliminar(int id) throws DataIntegrityViolationException {
 		// TODO Auto-generated method stub
-		return false;
+		return daoUsuario.delete(id);
 	}
 
 }

@@ -10,6 +10,7 @@
 					<th>Pos.</th>
 					<th>Nombre</th>
 					<th>Apariciones</th>
+					${usuarios}
 				</tr>
 			</thead>
 			<tbody>

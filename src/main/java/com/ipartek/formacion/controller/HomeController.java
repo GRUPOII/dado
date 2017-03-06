@@ -6,10 +6,13 @@ import java.util.Locale;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.ipartek.formacion.service.ServiceUsuario;
 
 /**
  * Controlador de la vista de inicio
@@ -19,6 +22,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller()
 public class HomeController {
+
+	@Autowired()
+	private ServiceUsuario serviceUsuario;
 
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
@@ -41,6 +47,7 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 
 		model.addAttribute("serverTime", formattedDate);
+		model.addAttribute("usuarios", this.serviceUsuario.ranking());
 
 		return "index";
 	}
@@ -59,12 +66,12 @@ public class HomeController {
 		LOG.info("Lanzar dado");
 
 		model.addAttribute("afortunado", "El afortunado es Periko el de los palotes");
-
+		model.addAttribute("usuarios", this.serviceUsuario.ranking());
 		return "index";
 	}
 
 	/**
-	 * Crar usuario e
+	 * Crear usuario e
 	 * 
 	 * @param locale
 	 *            idioma del navegador

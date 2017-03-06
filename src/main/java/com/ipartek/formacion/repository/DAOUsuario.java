@@ -32,6 +32,13 @@ public interface DAOUsuario {
 	List<Usuario> getAll();
 
 	/**
+	 * lista todos los usuarios ordenados por el numero de tiradas
+	 * 
+	 * @return arrayList con todos los usuarios
+	 */
+	List<Usuario> ranking();
+
+	/**
 	 * Obtiene un usuario a traves de su id
 	 * 
 	 * @param id
