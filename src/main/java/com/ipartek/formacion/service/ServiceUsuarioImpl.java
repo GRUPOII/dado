@@ -40,8 +40,8 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 
 	@Override()
 	public boolean crear(Usuario u) {
-		// TODO Auto-generated method stub
-		return false;
+		this.LOG.trace("Insertamos usuario: " + u);
+		return this.daoUsuario.insert(u);
 	}
 
 	@Override()
