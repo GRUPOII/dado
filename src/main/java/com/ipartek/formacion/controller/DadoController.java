@@ -2,7 +2,13 @@ package com.ipartek.formacion.controller;
 
 import org.springframework.stereotype.Controller;
 
-@Controller
+/**
+ * Controlador para el dado
+ * 
+ * @author Curso
+ *
+ */
+@Controller()
 public class DadoController {
 
 }
