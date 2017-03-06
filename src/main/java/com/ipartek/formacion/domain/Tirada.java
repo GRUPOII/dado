@@ -45,7 +45,7 @@ public class Tirada {
 	 * @return id de la tirada
 	 */
 	public int getId() {
-		return id;
+		return this.id;
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class Tirada {
 	 * @return id de usuario
 	 */
 	public int getIdUsuario() {
-		return idUsuario;
+		return this.idUsuario;
 	}
 
 	/**
@@ -80,18 +80,19 @@ public class Tirada {
 	/**
 	 * PAra obtener la fecha de una tirada
 	 * 
-	 * @return
+	 * @return devuelve la fecha de la tirada
 	 */
 
 	public String getFechaTirada() {
 
-		return fechaTirada;
+		return this.fechaTirada;
 	}
 
 	/**
 	 * Para asignar una fecha a una tirada
 	 * 
 	 * @param fechaTirada
+	 *            fehca de la tirada
 	 */
 	public void setFechaTirada(String fechaTirada) {
 		this.fechaTirada = fechaTirada;
@@ -101,7 +102,7 @@ public class Tirada {
 
 	@Override()
 	public String toString() {
-		return "Tirada [id=" + id + ", idUsuario=" + idUsuario + ", fechaTirada=" + fechaTirada + "]";
+		return "Tirada [id=" + this.id + ", idUsuario=" + this.idUsuario + ", fechaTirada=" + this.fechaTirada + "]";
 	}
 
 }
