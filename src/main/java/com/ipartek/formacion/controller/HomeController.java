@@ -12,15 +12,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 /**
- * Handles requests for the application home page.
+ * Controlador de la vista de inicio
+ * 
+ * @author curso
+ *
  */
-@Controller
+@Controller()
 public class HomeController {
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	/**
-	 * Simply selects the home view to render by returning its name.
+	 * Vista inicial
+	 * 
+	 * @param locale
+	 *            Devuelve el idioma del navegador
+	 * @param model
+	 *            atributos para la vista
+	 * @return vista de inicio
 	 */
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -36,6 +45,15 @@ public class HomeController {
 		return "index";
 	}
 
+	/**
+	 * Lanza el dado
+	 * 
+	 * @param locale
+	 *            idioma del navegador
+	 * @param model
+	 *            atributos
+	 * @return vista de inicio
+	 */
 	@RequestMapping(value = "/lanzar", method = RequestMethod.GET)
 	public String lanzarDado(Locale locale, Model model) {
 		logger.info("Lanzar dado");
@@ -45,6 +63,15 @@ public class HomeController {
 		return "index";
 	}
 
+	/**
+	 * Crar usuario
+	 * 
+	 * @param locale
+	 *            idioma del navegador
+	 * @param model
+	 *            atributos para la vista
+	 * @return vista de inicio
+	 */
 	@RequestMapping(value = "/crear", method = RequestMethod.GET)
 	public String crearUsuario(Locale locale, Model model) {
 		logger.info("Lanzar dado");

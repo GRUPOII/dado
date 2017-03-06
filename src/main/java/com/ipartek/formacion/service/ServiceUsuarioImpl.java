@@ -11,40 +11,46 @@ import org.springframework.stereotype.Service;
 import com.ipartek.formacion.domain.Usuario;
 import com.ipartek.formacion.repository.DAOUsuario;
 
-@Service("serviceUsuario")
+/**
+ * Implementacion del servicio USuario
+ * 
+ * @author curso
+ *
+ */
+@Service(value = "serviceUsuario")
 public class ServiceUsuarioImpl implements ServiceUsuario {
 
-	private final Log logger = LogFactory.getLog(getClass());
+	private final Log LOG = LogFactory.getLog(getClass());
 
-	@Autowired
+	@Autowired()
 	private DAOUsuario daoUsuario;
 
-	@Override
+	@Override()
 	public List<Usuario> listar() {
-		logger.trace("listar usuarios");
-		return daoUsuario.getAll();
+		this.LOG.trace("listar usuarios");
+		return this.daoUsuario.getAll();
 	}
 
-	@Override
+	@Override()
 	public Usuario buscarPorId(int id) {
-		logger.trace("Buscamos usuario por id: " + id);
-		Usuario usuario = daoUsuario.getById(id);
+		this.LOG.trace("Buscamos usuario por id: " + id);
+		Usuario usuario = this.daoUsuario.getById(id);
 		return usuario;
 	}
 
-	@Override
+	@Override()
 	public boolean crear(Usuario u) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	@Override()
 	public boolean modificar(Usuario u) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
-	@Override
+	@Override()
 	public boolean eliminar(int id) throws DataIntegrityViolationException {
 		// TODO Auto-generated method stub
 		return false;

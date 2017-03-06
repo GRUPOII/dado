@@ -10,18 +10,32 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ipartek.formacion.service.ServiceUsuario;
 
-@Controller
+/**
+ * Controlador del usuario
+ * 
+ * @author curso
+ *
+ */
+@Controller()
 public class UsuarioController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UsuarioController.class);
 
-	@Autowired
-	ServiceUsuario serviceUsuario;
+	@Autowired()
+	private ServiceUsuario serviceUsuario;
 
+	/**
+	 * Listar usuarios
+	 * 
+	 * @param model
+	 *            atributos
+	 * @return listado de usuarios
+	 */
 	@RequestMapping(value = "/usuario", method = RequestMethod.GET)
 	public String listar(Model model) {
+		LOG.info("listar");
 
-		model.addAttribute("usuarios", serviceUsuario.listar());
+		model.addAttribute("usuarios", this.serviceUsuario.listar());
 
 		return "usuario/index";
 	}
