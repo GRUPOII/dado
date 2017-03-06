@@ -64,7 +64,7 @@ public class HomeController {
 	}
 
 	/**
-	 * Crar usuario
+	 * Crar usuario e
 	 * 
 	 * @param locale
 	 *            idioma del navegador

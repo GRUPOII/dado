@@ -2,6 +2,9 @@
 
 
 <h2>Listado de usuarios</h2>
+<a href="usuario/edit">Nuevo usuario</a>
+<div class="row">
+<div class="col-md-6">
 
 <table class="tablePlugin" cellspacing="0" width="100%">
 	<thead>
@@ -16,7 +19,7 @@
 		<c:forEach items="${usuarios}" var="u">
 			<tr>
 				<td>${u.id}</td>
-				<td>${u.nombre}</td>
+				<td><a href="usuario/edit/${u.id}">${u.nombre}</a></td>
 				<td>Botón modificar</td>
 				<td>Botón eliminar</td>
 			</tr>
@@ -26,5 +29,11 @@
 	</tbody>
 </table>
 
+
+</div>
+
+
+
+</div><!-- <div class="row"> -->
 
 <%@ include file="../includes/footer.jsp"%>

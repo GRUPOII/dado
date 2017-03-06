@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,6 +42,38 @@ public class UsuarioController {
 		model.addAttribute("usuarios", this.serviceUsuario.listar());
 
 		return "usuario/index";
+	}
+
+	/**
+	 * Editamos un usuario, ya sea mofiicar o crear
+	 * 
+	 * @param model
+	 *            atributos que tenemos en la JSP
+	 * @return vista del formulario de usuarios
+	 */
+	@RequestMapping(value = "/usuario/edit", method = RequestMethod.GET)
+	public String irFormularioNuevo(Model model) {
+
+		model.addAttribute("usuario", new Usuario());
+		return "usuario/form";
+	}
+
+	/**
+	 * Detalle de un usuario concreto
+	 * 
+	 * @param id
+	 *            del usuario
+	 * @param model
+	 *            atributos de la JSP
+	 * @return vista del detalle de ese usuario
+	 */
+	@RequestMapping(value = "/usuario/edit/{id}", method = RequestMethod.GET)
+	public String irFormularioEditar(@PathVariable int id, Model model) {
+
+		Usuario usuario = serviceUsuario.buscarPorId(id);
+
+		model.addAttribute("usuario", usuario);
+		return "usuario/form";
 	}
 
 	/**
