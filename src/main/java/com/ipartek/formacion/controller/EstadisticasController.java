@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class EstadisticasController {
 
-	private static final Logger logger = LoggerFactory.getLogger(EstadisticasController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(EstadisticasController.class);
 
 	@RequestMapping(value = "/estadisticas", method = RequestMethod.GET)
 	public String listar(Model model) {

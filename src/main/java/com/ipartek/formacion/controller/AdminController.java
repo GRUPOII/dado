@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class AdminController {
 
-	private static final Logger logger = LoggerFactory.getLogger(AdminController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(AdminController.class);
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String listar(Model model) {

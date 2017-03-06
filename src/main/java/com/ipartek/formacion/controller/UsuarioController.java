@@ -13,7 +13,7 @@ import com.ipartek.formacion.service.ServiceUsuario;
 @Controller
 public class UsuarioController {
 
-	private static final Logger logger = LoggerFactory.getLogger(UsuarioController.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UsuarioController.class);
 
 	@Autowired
 	ServiceUsuario serviceUsuario;
