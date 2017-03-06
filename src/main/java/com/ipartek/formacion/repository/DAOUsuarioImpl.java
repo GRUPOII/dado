@@ -25,7 +25,7 @@ import com.ipartek.formacion.repository.mapper.UsuarioMapper;
 @Repository(value = "daoUsuario")
 public class DAOUsuarioImpl implements DAOUsuario {
 
-	private final Log logger = LogFactory.getLog(getClass());
+	private final Log LOG = LogFactory.getLog(getClass());
 
 	@Autowired()
 	private DataSource dataSource;
@@ -43,6 +43,8 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_GET_ALL = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` ORDER BY `id` ASC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` WHERE `id` = ?";
 
+	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
+
 	@Override()
 	public List<Usuario> getAll() {
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
@@ -53,11 +55,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 		} catch (EmptyResultDataAccessException e) {
 
-			this.logger.warn("No existen usuarios todavia");
+			this.LOG.warn("No existen usuarios todavia");
 
 		} catch (Exception e) {
 
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 
 		}
 		return lista;
@@ -73,11 +75,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 		} catch (EmptyResultDataAccessException e) {
 
-			this.logger.warn("No existen usuarios todavia");
+			this.LOG.warn("No existen usuarios todavia");
 
 		} catch (Exception e) {
 
-			this.logger.error(e.getMessage());
+			this.LOG.error(e.getMessage());
 
 		}
 
@@ -97,9 +99,24 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	}
 
 	@Override()
-	public boolean delete(int id) throws DataIntegrityViolationException {
-		// TODO Auto-generated method stub
-		return false;
+	public boolean delete(int id) {
+		this.LOG.trace("eliminar usuario " + id);
+		boolean resul = false;
+
+		try {
+
+			id = this.jdbcTemplate.update(SQL_DELETE, id);
+
+		} catch (DataIntegrityViolationException e) {
+			this.LOG.warn(e.getMessage());
+
+		} catch (Exception e) {
+
+			this.LOG.error(e.getMessage());
+
+		}
+
+		return resul;
 	}
 
 }

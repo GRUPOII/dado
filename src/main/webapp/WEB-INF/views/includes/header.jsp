@@ -16,6 +16,9 @@
 	<link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css" rel="stylesheet">
 	
+	<!-- Custom -->
+	<link href="resources/css/custom.css" rel="stylesheet">
+	
 	
 </head>
 <body>
