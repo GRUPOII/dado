@@ -184,7 +184,8 @@ public class AdminController {
 		}
 
 		model.addAttribute("msg", msg);
-		return "usuario/form";
+		model.addAttribute("usuarios", this.serviceUsuario.listar());
+		return "usuario/index";
 
 	}
 }
