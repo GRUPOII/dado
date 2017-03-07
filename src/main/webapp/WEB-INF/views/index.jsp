@@ -10,17 +10,20 @@
 					<th>Pos.</th>
 					<th>Nombre</th>
 					<th>Apariciones</th>
-				
+
 				</tr>
 			</thead>
 			<tbody>
-			<c:forEach items="${usuarios}" var="u">
-			<tr>
-				<td>${u.nombre}</td>
-				<td>${u.nombre}</a></td>
-				<td>${u.tiradas}</td>
-			</tr>
-		</c:forEach>
+				<c:forEach items="${usuarios}" var="u">
+					<tr>
+						<c:if test="${usuarios.size() > 0}">
+							<td>${usuarios.lastIndexOf(u)+1}</td>
+							<td>${u.nombre}</td>
+							<td>${u.tiradas}</td>
+						</c:if>
+						
+					</tr>
+				</c:forEach>
 			</tbody>
 		</table>
 
