@@ -52,7 +52,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_INSERT = "INSERT INTO `usuario` (`nombre`) VALUES (?);";
 	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
-	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada as t, usuario as u WHERE u.id = t.usuario_id AND u.fecha_baja IS NULL GROUP BY u.nombre ORDER BY Lanzamientos DESC LIMIT 500;";
+	private static final String SQL_RANKING = "SELECT count(tirada.id) as Lanzamientos, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY Lanzamientos DESC LIMIT 500;";
 
 	@Override()
 	public List<Usuario> getAll() {
