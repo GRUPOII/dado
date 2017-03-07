@@ -16,12 +16,9 @@
 			<tbody>
 				<c:forEach items="${usuarios}" var="u">
 					<tr>
-						<c:if test="${usuarios.size() > 0}">
-							<td>${usuarios.lastIndexOf(u)+1}</td>
-							<td>${u.nombre}</td>
-							<td>${u.tiradas}</td>
-						</c:if>
-						
+						<td>${usuarios.lastIndexOf(u)+1}</td>
+						<td>${u.nombre}</td>
+						<td>${u.tiradas}</td>
 					</tr>
 				</c:forEach>
 			</tbody>
