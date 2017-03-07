@@ -2,7 +2,7 @@
 
 
 <h2>Listado de usuarios</h2>
-<a href="usuario/edit">Nuevo usuario</a>
+<a href="admin/usuario/edit">Nuevo usuario</a>
 <div class="row">
 <div class="col-md-6">
 
@@ -19,7 +19,7 @@
 		<c:forEach items="${usuarios}" var="u">
 			<tr>
 				<td>${u.id}</td>
-				<td><a href="usuario/edit/${u.id}">${u.nombre}</a></td>
+				<td><a href="admin/usuario/edit/${u.id}">${u.nombre}</a></td>
 				<td>Botón modificar</td>
 				<td>Botón eliminar</td>
 			</tr>

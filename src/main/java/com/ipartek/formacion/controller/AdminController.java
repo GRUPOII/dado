@@ -85,7 +85,7 @@ public class AdminController {
 	public String irFormularioNuevo(Model model) {
 
 		model.addAttribute("usuario", new Usuario());
-		return "admin/form";
+		return "usuario/form";
 	}
 
 	/**
@@ -103,7 +103,7 @@ public class AdminController {
 		Usuario usuario = this.serviceUsuario.buscarPorId(id);
 
 		model.addAttribute("usuario", usuario);
-		return "admin/form";
+		return "usuario/form";
 	}
 
 	/**
@@ -146,7 +146,7 @@ public class AdminController {
 		}
 
 		model.addAttribute("msg", msg);
-		return "admin/form";
+		return "usuario/form";
 
 	}
 }

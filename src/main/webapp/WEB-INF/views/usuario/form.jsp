@@ -1,6 +1,6 @@
 <%@ include file="../includes/header.jsp" %> 
 
-<a href="usuario">Volver</a>
+<a href="admin">Volver</a>
 
 <c:if test="${not empty usuario.nombre}">
 	<h1>${usuario.nombre}</h1>
@@ -16,7 +16,7 @@ ${msg}
 
 <div class="row">
 <div class="col-md-6">
-	<form:form action="usuario/crear" modelAttribute="usuario">
+	<form:form action="admin/usuario/crear" modelAttribute="usuario">
 	
 		<form:input path="id" readonly="true"/><br>
 		<form:input path="nombre"/><br>	
@@ -40,5 +40,5 @@ ${msg}
 
 <c:if test="${usuario.id != -1}">
 	<br>
-	<a style="color:red;" href="usuario/delete/${usuario.id}">Eliminar</a>
+	<a style="color:red;" href="admin/usuario/delete/${usuario.id}">Eliminar</a>
 </c:if>
