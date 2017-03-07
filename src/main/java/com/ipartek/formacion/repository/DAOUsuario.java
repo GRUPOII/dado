@@ -34,6 +34,13 @@ public interface DAOUsuario {
 	List<Usuario> getAll();
 
 	/**
+	 * Lista todos los usuarios dados de alta
+	 * 
+	 * @returnarrayList con todos los usuarios
+	 */
+	List<Usuario> getAllUsuariosDeAlta();
+
+	/**
 	 * lista todos los usuarios ordenados por el numero de tiradas
 	 * 
 	 * @return arrayList con todos los usuarios

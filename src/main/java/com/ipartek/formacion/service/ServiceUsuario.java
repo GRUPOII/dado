@@ -58,6 +58,13 @@ public interface ServiceUsuario {
 	boolean modificar(Usuario u);
 
 	/**
+	 * Para recoger el usuario que resulta al tirar el dado
+	 * 
+	 * @return el usuario resultante
+	 */
+	Usuario lanzarDado();
+
+	/**
 	 * Elimina un usuario
 	 * 
 	 * @param id

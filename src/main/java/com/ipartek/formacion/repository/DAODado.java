@@ -1,5 +1,6 @@
 package com.ipartek.formacion.repository;
 
+import com.ipartek.formacion.domain.Tirada;
 import com.ipartek.formacion.domain.Usuario;
 
 /**
@@ -16,5 +17,7 @@ public interface DAODado {
 	 * @return retorna
 	 */
 	Usuario crear();
+
+	boolean lanzarDado(Tirada t);
 
 }

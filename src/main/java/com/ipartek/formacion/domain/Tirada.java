@@ -1,5 +1,7 @@
 package com.ipartek.formacion.domain;
 
+import java.util.Date;
+
 /**
  * Pojo tirada
  * 
@@ -11,7 +13,7 @@ public class Tirada {
 	// ATRIBUTOS
 	private int id;
 	private int idUsuario;
-	private String fechaTirada;
+	private Date fechaTirada;
 
 	// CONSTRUCTORES
 	/**
@@ -31,7 +33,7 @@ public class Tirada {
 	 * @param fechaTirada
 	 *            fecha que se crea automatica
 	 */
-	public Tirada(int id, int idUsuario, String fechaTirada) {
+	public Tirada(int id, int idUsuario, Date fechaTirada) {
 		super();
 		this.id = id;
 		this.idUsuario = idUsuario;
@@ -83,7 +85,7 @@ public class Tirada {
 	 * @return devuelve la fecha de la tirada
 	 */
 
-	public String getFechaTirada() {
+	public Date getFechaTirada() {
 
 		return this.fechaTirada;
 	}
@@ -94,7 +96,7 @@ public class Tirada {
 	 * @param fechaTirada
 	 *            fehca de la tirada
 	 */
-	public void setFechaTirada(String fechaTirada) {
+	public void setFechaTirada(Date fechaTirada) {
 		this.fechaTirada = fechaTirada;
 	}
 

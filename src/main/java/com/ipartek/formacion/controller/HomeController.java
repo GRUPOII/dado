@@ -12,6 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.ipartek.formacion.domain.Tirada;
+import com.ipartek.formacion.domain.Usuario;
+import com.ipartek.formacion.service.ServiceTirada;
 import com.ipartek.formacion.service.ServiceUsuario;
 
 /**
@@ -25,6 +28,9 @@ public class HomeController {
 
 	@Autowired()
 	private ServiceUsuario serviceUsuario;
+
+	@Autowired()
+	private ServiceTirada serviceTirada;
 
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
@@ -65,7 +71,13 @@ public class HomeController {
 	public String lanzarDado(Locale locale, Model model) {
 		LOG.info("Lanzar dado");
 
-		model.addAttribute("afortunado", "El afortunado es Periko el de los palotes");
+		Usuario afortunado = serviceUsuario.lanzarDado();
+		Tirada t = new Tirada();
+		t.setIdUsuario(afortunado.getId());
+
+		serviceTirada.lanzarDado(t);
+		model.addAttribute("afortunado", afortunado.getNombre());
+
 		model.addAttribute("usuarios", this.serviceUsuario.ranking());
 		return "index";
 	}
