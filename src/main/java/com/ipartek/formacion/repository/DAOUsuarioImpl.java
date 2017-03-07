@@ -55,6 +55,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
 	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY tiradas DESC LIMIT 500;";
+	private static final String SQL_USUARIOS_ALTA = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`, `fecha_baja` FROM `usuario` WHERE `fecha_baja` IS NULL  ORDER BY `id` DESC LIMIT 500;";
 
 	@Override()
 	public List<Usuario> getAll() {
@@ -196,6 +197,19 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
 			this.LOG.error(e.getMessage());
 
+		}
+		return lista;
+	}
+
+	@Override
+	public List<Usuario> getAllUsuariosDeAlta() {
+		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+		try {
+			lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_USUARIOS_ALTA, new UsuarioMapper());
+		} catch (EmptyResultDataAccessException e) {
+			this.LOG.warn("No existen usuarios todavia");
+		} catch (Exception e) {
+			this.LOG.error(e.getMessage());
 		}
 		return lista;
 	}

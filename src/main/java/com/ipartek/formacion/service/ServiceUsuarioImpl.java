@@ -1,5 +1,6 @@
 package com.ipartek.formacion.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.commons.logging.Log;
@@ -10,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.domain.Ranking;
 import com.ipartek.formacion.domain.Usuario;
+import com.ipartek.formacion.repository.DAODado;
 import com.ipartek.formacion.repository.DAOUsuario;
 
 /**
@@ -25,6 +27,9 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 
 	@Autowired()
 	private DAOUsuario daoUsuario;
+
+	@Autowired()
+	private DAODado daoDado;
 
 	@Override()
 	public List<Usuario> listar() {
@@ -61,6 +66,16 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 	public boolean eliminar(int id) throws DataIntegrityViolationException {
 		// TODO Auto-generated method stub
 		return daoUsuario.delete(id);
+	}
+
+	@Override
+	public Usuario lanzarDado() {
+		ArrayList<Usuario> usuariosAlta = (ArrayList<Usuario>) daoUsuario.getAllUsuariosDeAlta();
+		// Creamos un numero aleatorio con la largura del array resultante
+		double aleatorio = Math.round(Math.random() * (usuariosAlta.size() - 1));
+		int n = (int) aleatorio;
+		LOG.info("Numero aleatorio");
+		return usuariosAlta.get(n);
 	}
 
 }
