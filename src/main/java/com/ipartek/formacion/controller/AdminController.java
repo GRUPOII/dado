@@ -145,7 +145,6 @@ public class AdminController {
 	}
 
 	/**
-	 * 
 	 * Crear usuario
 	 * 
 	 * @param usuario

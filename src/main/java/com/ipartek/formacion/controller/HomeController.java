@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.ipartek.formacion.domain.Tirada;
 import com.ipartek.formacion.domain.Usuario;
+import com.ipartek.formacion.service.ServiceEstadistica;
 import com.ipartek.formacion.service.ServiceTirada;
 import com.ipartek.formacion.service.ServiceUsuario;
 
@@ -31,6 +32,9 @@ public class HomeController {
 
 	@Autowired()
 	private ServiceTirada serviceTirada;
+
+	@Autowired()
+	private ServiceEstadistica serviceEstadisticas;
 
 	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
@@ -80,6 +84,15 @@ public class HomeController {
 
 		model.addAttribute("usuarios", this.serviceUsuario.ranking());
 		return "index";
+	}
+
+	@RequestMapping(value = "/estadisticas", method = RequestMethod.GET)
+	public String listarEstadisticas(Model model) {
+		LOG.info("estadisticas");
+
+		model.addAttribute("estadisticas", this.serviceEstadisticas.lanzamientosTotales());
+
+		return "estadisticas/index";
 	}
 
 }

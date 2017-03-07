@@ -20,14 +20,16 @@
 
 			
 					<c:forEach items="${usuarios}" var="u">
-						<form:form action="admin/usuario/crear" modelAttribute="usuario" method="POST">
+					
 						<tr>
-							<td>${u.id}</td>
-							<td><input type="text" name="nombre" placeholder="${u.nombre}"/></td>
-							<td><input type="submit" value="Modificar" /></td>
+							<td>${u.id}	</td>
+							<td>
+							${u.nombre}
+							</td>
+							<td><a style="color: green;" href="admin/usuario/edit/${u.id}">Modificar</a></td>
 							<c:if test="${u.fechaBaja!=null}">
-								<td><a style="color: blue;"
-									href="admin/usuario/alta/${u.id}">Dar de alta</a></td>
+								<td>
+								<a style="color: blue"; href="admin/usuario/alta/${u.id}">Dar de alta</a></td>
 							</c:if>
 							<c:if test="${u.fechaBaja==null}">
 								<td><a style="color: orange;"
@@ -36,7 +38,7 @@
 							<td><a style="color: red;"
 								href="admin/usuario/delete/${u.id}">Eliminar</a></td>
 						</tr>
-							</form:form>
+							
 					</c:forEach>
 			
 

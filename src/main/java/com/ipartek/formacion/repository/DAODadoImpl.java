@@ -4,12 +4,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.support.GeneratedKeyHolder;
@@ -17,7 +20,7 @@ import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
 import com.ipartek.formacion.domain.Tirada;
-import com.ipartek.formacion.domain.Usuario;
+import com.ipartek.formacion.repository.mapper.TiradaMapper;
 
 @Repository(value = "daoDado")
 public class DAODadoImpl implements DAODado {
@@ -36,13 +39,9 @@ public class DAODadoImpl implements DAODado {
 
 	// Sentencias SQL
 	private static final String SQL_INSERT = "INSERT INTO `tirada` (`usuario_id`) VALUES (?);";
-
-	@Override
-	public Usuario crear() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	private static final String SQL_COUNT = "SELECT COUNT(id) FROM tirada;";
+	private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
+	private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha DESC, tirada.id DESC LIMIT 10;";
 	@Override
 	public boolean lanzarDado(final Tirada t) {
 		boolean resul = false;
@@ -68,6 +67,40 @@ public class DAODadoImpl implements DAODado {
 			this.LOG.error(e.getMessage());
 		}
 		return resul;
+	}
+
+	@Override
+	public int total() {
+		int resul;
+		resul = this.jdbcTemplate.queryForInt(SQL_COUNT);
+		return resul;
+	}
+
+	@Override
+	public List<Tirada> getAll() {
+		ArrayList<Tirada> lista = new ArrayList<Tirada>();
+		try {
+			lista = (ArrayList<Tirada>) this.jdbcTemplate.query(SQL_GET_ALL, new TiradaMapper());
+		} catch (EmptyResultDataAccessException e) {
+			this.LOG.warn("No existen tiradas todavia");
+		} catch (Exception e) {
+			this.LOG.error(e.getMessage());
+		}
+		return lista;
+	}
+
+	@Override
+	public List<Tirada> getUltimos() {
+		ArrayList<Lanzamiento> lista = new ArrayList<Lanzamientos>();
+		try {
+			lista = (ArrayList<Lanzamientos>) this.jdbcTemplate.query(SQL_ULTIMAS_TIRADAS, new Object[] { n },
+					new LanzamientoMapper());
+		} catch (EmptyResultDataAccessException e) {
+			this.logger.warn("No existen tiradas todavia");
+		} catch (Exception e) {
+			this.logger.error(e.getMessage());
+		}
+		return lista;
 	}
 
 }

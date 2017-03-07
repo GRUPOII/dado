@@ -1,7 +1,8 @@
 package com.ipartek.formacion.repository;
 
+import java.util.List;
+
 import com.ipartek.formacion.domain.Tirada;
-import com.ipartek.formacion.domain.Usuario;
 
 /**
  * Interfaz para el DAO de dado
@@ -11,13 +12,12 @@ import com.ipartek.formacion.domain.Usuario;
  */
 public interface DAODado {
 
-	/**
-	 * Crea
-	 * 
-	 * @return retorna
-	 */
-	Usuario crear();
+	List<Tirada> getAll();
 
 	boolean lanzarDado(Tirada t);
+
+	int total();
+
+	List<Tirada> getUltimos();
 
 }
