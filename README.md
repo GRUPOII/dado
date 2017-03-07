@@ -15,8 +15,9 @@ Multidioma para Castellano, Euskera e Ingles
 
 ##instalacion:
 
-	Si se desea cambiar las credenciales de la base de datos, modificar el fichero \src\main\resources\database.properties
+	Si se desea cambiar las credenciales de la base de datos, modificar el fichero /src/main/resources/database.properties
 	
 	-importar script de la carpeta deploy/install-dado-eq2.sql
 	-Desplegar deploy/dado-eq2.war en Tomcat
 	-Acceder mediante navegador a url: "localhost:8080/dado-eq2"
+	
