@@ -64,7 +64,7 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 
 	@Override()
 	public boolean eliminar(int id) throws DataIntegrityViolationException {
-		// TODO Auto-generated method stub
+		this.LOG.trace("Eliminamos usuario: " + id);
 		return daoUsuario.delete(id);
 	}
 
@@ -76,6 +76,18 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 		int n = (int) aleatorio;
 		LOG.info("Numero aleatorio");
 		return usuariosAlta.get(n);
+	}
+
+	@Override
+	public boolean darBaja(int id) {
+		this.LOG.trace("Damos de baja usuario: " + id);
+		return daoUsuario.baja(id);
+	}
+
+	@Override
+	public boolean darAlta(int id) {
+		this.LOG.trace("Damos de alta usuario: " + id);
+		return daoUsuario.alta(id);
 	}
 
 }

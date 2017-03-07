@@ -52,10 +52,13 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_GET_ALL = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` ORDER BY `id` ASC LIMIT 500;";
 	private static final String SQL_GET_BY_ID = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`,`fecha_baja` FROM `usuario` WHERE `id` = ?";
 	private static final String SQL_INSERT = "INSERT INTO `usuario` (`nombre`) VALUES (?);";
-	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ? WHERE `id`= ? ;";
+	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ?, `fecha_modificacion`= CURRENT_TIMESTAMP WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
-	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY tiradas DESC LIMIT 500;";
-	private static final String SQL_USUARIOS_ALTA = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`, `fecha_baja` FROM `usuario` WHERE `fecha_baja` IS NULL  ORDER BY `id` DESC LIMIT 500;";
+	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY tiradas DESC LIMIT 10;";
+	private static final String SQL_GET_ALL_USUARIOS_ALTA = "SELECT `id`, `nombre`, `fecha_alta`, `fecha_modificacion`, `fecha_baja` FROM `usuario` WHERE `fecha_baja` IS NULL  ORDER BY `id` DESC LIMIT 500;";
+
+	private static final String SQL_USUARIO_BAJA = "UPDATE `usuario` SET `fecha_modificacion`= CURRENT_TIMESTAMP , `fecha_baja`= CURRENT_TIMESTAMP WHERE `id`= ? ;";
+	private static final String SQL_USUARIO_ALTA = "UPDATE `usuario` SET `fecha_alta`= CURRENT_TIMESTAMP,`fecha_modificacion`= CURRENT_TIMESTAMP , `fecha_baja`= NULL WHERE `id`= ? ;";
 
 	@Override()
 	public List<Usuario> getAll() {
@@ -205,7 +208,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	public List<Usuario> getAllUsuariosDeAlta() {
 		ArrayList<Usuario> lista = new ArrayList<Usuario>();
 		try {
-			lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_USUARIOS_ALTA, new UsuarioMapper());
+			lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_GET_ALL_USUARIOS_ALTA, new UsuarioMapper());
 		} catch (EmptyResultDataAccessException e) {
 			this.LOG.warn("No existen usuarios todavia");
 		} catch (Exception e) {
@@ -214,4 +217,35 @@ public class DAOUsuarioImpl implements DAOUsuario {
 		return lista;
 	}
 
+	@Override
+	public boolean baja(int id) {
+		boolean resul = false;
+		try {
+			int affectedRows = this.jdbcTemplate.update(SQL_USUARIO_BAJA, id);
+			if (affectedRows == 1) {
+				resul = true;
+			}
+		} catch (DataIntegrityViolationException e) {
+			this.LOG.warn(e.getMessage());
+		} catch (Exception e) {
+			this.LOG.error(e.getMessage());
+		}
+		return resul;
+	}
+
+	@Override
+	public boolean alta(int id) {
+		boolean resul = false;
+		try {
+			int affectedRows = this.jdbcTemplate.update(SQL_USUARIO_ALTA, id);
+			if (affectedRows == 1) {
+				resul = true;
+			}
+		} catch (DataIntegrityViolationException e) {
+			this.LOG.warn(e.getMessage());
+		} catch (Exception e) {
+			this.LOG.error(e.getMessage());
+		}
+		return resul;
+	}
 }

@@ -82,22 +82,4 @@ public class HomeController {
 		return "index";
 	}
 
-	/**
-	 * Crear usuario e
-	 * 
-	 * @param locale
-	 *            idioma del navegador
-	 * @param model
-	 *            atributos para la vista
-	 * @return vista de inicio
-	 */
-	@RequestMapping(value = "/crear", method = RequestMethod.GET)
-	public String crearUsuario(Locale locale, Model model) {
-		LOG.info("Lanzar dado");
-
-		model.addAttribute("afortunado", "El afortunado es Periko el de los palotes");
-
-		return "index";
-	}
-
 }

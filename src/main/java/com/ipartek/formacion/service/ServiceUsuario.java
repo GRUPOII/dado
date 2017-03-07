@@ -76,4 +76,22 @@ public interface ServiceUsuario {
 	 */
 	boolean eliminar(int id) throws DataIntegrityViolationException;
 
+	/**
+	 * Da de baja un usuario sin eliminarlo de la base de datos
+	 * 
+	 * @param id
+	 *            del usuario
+	 * @return true si da de baja , false en caso contrario
+	 */
+	boolean darBaja(int id);
+
+	/**
+	 * Da de alta un usuario que este dado de baja
+	 * 
+	 * @param id
+	 *            del usuario
+	 * @return true si da de alta , false en caso contrario
+	 */
+	public boolean darAlta(int id);
+
 }

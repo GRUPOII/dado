@@ -12,18 +12,37 @@
 			<th>ID</th>
 			<th>NOMBRE</th>
 			<th>MODIFICAR</th>
+			<th>DAR DE BAJA</th>
 			<th>ELIMINAR</th>
 		</tr>
 	</thead>
 	<tbody>
+	
 		<c:forEach items="${usuarios}" var="u">
 			<tr>
 				<td>${u.id}</td>
-				<td><a href="admin/usuario/edit/${u.id}">${u.nombre}</a></td>
-				<td>Botón modificar</td>
-				<td>Botón eliminar</td>
+				<td>
+				${u.nombre}
+				</td>
+				<td>
+					Modificar
+				</td>
+					<c:if test="${u.fechaBaja!=null}">
+						<td>
+							<a style="color:blue;" href="admin/usuario/alta/${u.id}">Dar de alta</a>
+						</td>
+					</c:if>
+					<c:if test="${u.fechaBaja==null}">
+						<td>
+							<a style="color:orange;" href="admin/usuario/baja/${u.id}">Dar de baja</a>
+						</td>
+					</c:if>
+				<td>
+					<a style="color:red;" href="admin/usuario/delete/${u.id}">Eliminar</a>
+				</td>
 			</tr>
 		</c:forEach>
+		
 
 
 	</tbody>

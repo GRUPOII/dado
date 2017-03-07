@@ -73,6 +73,44 @@ public class AdminController {
 		return "usuario/index";
 	}
 
+	@RequestMapping(value = "/admin/usuario/baja/{id}", method = RequestMethod.GET)
+	public String darDeBaja(@PathVariable() int id, Model model) {
+
+		LOG.info("dar de baja usuario " + id);
+		String msg = "Usuario no dado de baja";
+
+		try {
+			if (this.serviceUsuario.darBaja(id)) {
+				msg = "Usuario dado de baja con exito";
+			}
+		} catch (DataIntegrityViolationException e) {
+			msg = e.getMessage();
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("usuarios", this.serviceUsuario.listar());
+
+		return "usuario/index";
+	}
+
+	@RequestMapping(value = "/admin/usuario/alta/{id}", method = RequestMethod.GET)
+	public String darDeAlta(@PathVariable() int id, Model model) {
+
+		LOG.info("dar de alta usuario " + id);
+		String msg = "Usuario no dado de alta";
+
+		try {
+			if (this.serviceUsuario.darAlta(id)) {
+				msg = "Usuario dado de alta con exito";
+			}
+		} catch (DataIntegrityViolationException e) {
+			msg = e.getMessage();
+		}
+		model.addAttribute("msg", msg);
+		model.addAttribute("usuarios", this.serviceUsuario.listar());
+
+		return "usuario/index";
+	}
+
 	/**
 	 * Editamos un usuario, ya sea mofiicar o crear
 	 * 

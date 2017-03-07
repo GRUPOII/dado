@@ -85,4 +85,22 @@ public interface DAOUsuario {
 	 */
 	boolean delete(int id) throws DataIntegrityViolationException;
 
+	/**
+	 * Damos de baja un usuario sin borrarlo d ela base de datos
+	 * 
+	 * @param id
+	 *            del usuario
+	 * @return true si lo da d ebaja, false en caso contrario
+	 */
+	boolean baja(int id);
+
+	/**
+	 * Damos de alta un usuario que este de baja
+	 * 
+	 * @param id
+	 *            del usuario
+	 * @return true si lo da d alta, false en caso contrario
+	 */
+	boolean alta(int id);
+
 }
