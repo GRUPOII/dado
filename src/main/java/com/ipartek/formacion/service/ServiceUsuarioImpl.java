@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
+import com.ipartek.formacion.domain.Ranking;
 import com.ipartek.formacion.domain.Usuario;
 import com.ipartek.formacion.repository.DAOUsuario;
 
@@ -32,7 +33,7 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
 	}
 
 	@Override()
-	public List<Usuario> ranking() {
+	public List<Ranking> ranking() {
 		this.LOG.trace("ranking usuarios");
 		return this.daoUsuario.ranking();
 	}

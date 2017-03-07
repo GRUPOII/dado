@@ -20,7 +20,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.ipartek.formacion.domain.Ranking;
 import com.ipartek.formacion.domain.Usuario;
+import com.ipartek.formacion.repository.mapper.RankingMapper;
 import com.ipartek.formacion.repository.mapper.UsuarioMapper;
 
 /**
@@ -52,7 +54,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 	private static final String SQL_INSERT = "INSERT INTO `usuario` (`nombre`) VALUES (?);";
 	private static final String SQL_UPDATE = "UPDATE `usuario` SET `nombre`= ? WHERE `id`= ? ;";
 	private static final String SQL_DELETE = "DELETE FROM `usuario` WHERE `id` = ?;";
-	private static final String SQL_RANKING = "SELECT count(tirada.id) as Lanzamientos, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY Lanzamientos DESC LIMIT 500;";
+	private static final String SQL_RANKING = "SELECT count(tirada.id) as tiradas, usuario.nombre FROM tirada, usuario WHERE usuario.id = tirada.usuario_id GROUP BY usuario.nombre ORDER BY tiradas DESC LIMIT 500;";
 
 	@Override()
 	public List<Usuario> getAll() {
@@ -178,13 +180,13 @@ public class DAOUsuarioImpl implements DAOUsuario {
 		return resul;
 	}
 
-	@Override
-	public List<Usuario> ranking() {
-		ArrayList<Usuario> lista = new ArrayList<Usuario>();
+	@Override()
+	public ArrayList<Ranking> ranking() {
+		ArrayList<Ranking> lista = new ArrayList<Ranking>();
 
 		try {
 
-			lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_RANKING, new UsuarioMapper());
+			lista = (ArrayList<Ranking>) this.jdbcTemplate.query(SQL_RANKING, new RankingMapper());
 
 		} catch (EmptyResultDataAccessException e) {
 

@@ -10,25 +10,17 @@
 					<th>Pos.</th>
 					<th>Nombre</th>
 					<th>Apariciones</th>
-					${usuarios}
+				
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row"></th>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<th scope="row"></th>
-					<td></td>
-					<td></td>
-				</tr>
-				<tr>
-					<th scope="row"></th>
-					<td></td>
-					<td></td>
-				</tr>
+			<c:forEach items="${usuarios}" var="u">
+			<tr>
+				<td>${u.nombre}</td>
+				<td>${u.nombre}</a></td>
+				<td>${u.tiradas}</td>
+			</tr>
+		</c:forEach>
 			</tbody>
 		</table>
 
