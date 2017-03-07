@@ -18,8 +18,9 @@
 			</thead>
 			<tbody>
 
-				<form action="admin/usuario/crear" method="POST">
+			
 					<c:forEach items="${usuarios}" var="u">
+						<form:form action="admin/usuario/crear" modelAttribute="usuario" method="POST">
 						<tr>
 							<td>${u.id}</td>
 							<td><input type="text" name="nombre" placeholder="${u.nombre}"/></td>
@@ -35,8 +36,9 @@
 							<td><a style="color: red;"
 								href="admin/usuario/delete/${u.id}">Eliminar</a></td>
 						</tr>
+							</form:form>
 					</c:forEach>
-				</form>
+			
 
 
 			</tbody>
