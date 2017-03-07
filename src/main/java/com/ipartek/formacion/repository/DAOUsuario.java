@@ -1,11 +1,13 @@
 package com.ipartek.formacion.repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.sql.DataSource;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.ipartek.formacion.domain.Ranking;
 import com.ipartek.formacion.domain.Usuario;
 
 /**
@@ -36,7 +38,7 @@ public interface DAOUsuario {
 	 * 
 	 * @return arrayList con todos los usuarios
 	 */
-	List<Usuario> ranking();
+	ArrayList<Ranking> ranking();
 
 	/**
 	 * Obtiene un usuario a traves de su id

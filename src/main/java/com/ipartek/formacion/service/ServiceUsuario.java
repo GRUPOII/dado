@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.dao.DataIntegrityViolationException;
 
+import com.ipartek.formacion.domain.Ranking;
 import com.ipartek.formacion.domain.Usuario;
 
 /**
@@ -27,7 +28,7 @@ public interface ServiceUsuario {
 	 * 
 	 * @return array de todos los usuarios
 	 */
-	List<Usuario> ranking();
+	List<Ranking> ranking();
 
 	/**
 	 * Devuelve un usuario buscado a traves de su id
