@@ -27,72 +27,81 @@ import com.ipartek.formacion.service.ServiceUsuario;
 @Controller()
 public class HomeController {
 
-	@Autowired()
-	private ServiceUsuario serviceUsuario;
+  @Autowired()
+  private ServiceUsuario serviceUsuario;
 
-	@Autowired()
-	private ServiceTirada serviceTirada;
+  @Autowired()
+  private ServiceTirada serviceTirada;
 
-	@Autowired()
-	private ServiceEstadistica serviceEstadisticas;
+  @Autowired()
+  private ServiceEstadistica serviceEstadisticas;
 
-	private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
+  private static final Logger LOG = LoggerFactory.getLogger(HomeController.class);
 
-	/**
-	 * Vista inicial
-	 * 
-	 * @param locale
-	 *            Devuelve el idioma del navegador
-	 * @param model
-	 *            atributos para la vista
-	 * @return vista de inicio
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		LOG.info("Welcome home! The client locale is {}.", locale);
+  /**
+   * Vista inicial
+   * 
+   * @param locale
+   *          Devuelve el idioma del navegador
+   * @param model
+   *          atributos para la vista
+   * @return vista de inicio
+   */
+  @RequestMapping(value = "/", method = RequestMethod.GET)
+  public String home(Locale locale, Model model) {
+    LOG.info("Welcome home! The client locale is {}.", locale);
 
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+    Date date = new Date();
+    DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
+        locale);
 
-		String formattedDate = dateFormat.format(date);
+    String formattedDate = dateFormat.format(date);
 
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("usuarios", this.serviceUsuario.ranking());
+    model.addAttribute("serverTime", formattedDate);
+    model.addAttribute("usuarios", this.serviceUsuario.ranking());
 
-		return "index";
-	}
+    return "index";
+  }
 
-	/**
-	 * Lanza el dado
-	 * 
-	 * @param locale
-	 *            idioma del navegador
-	 * @param model
-	 *            atributos
-	 * @return vista de inicio
-	 */
-	@RequestMapping(value = "/lanzar", method = RequestMethod.GET)
-	public String lanzarDado(Locale locale, Model model) {
-		LOG.info("Lanzar dado");
+  /**
+   * Lanza el dado
+   * 
+   * @param locale
+   *          idioma del navegador
+   * @param model
+   *          atributos
+   * @return vista de inicio
+   */
+  @RequestMapping(value = "/lanzar", method = RequestMethod.GET)
+  public String lanzarDado(Locale locale, Model model) {
+    LOG.info("Lanzar dado");
 
-		Usuario afortunado = serviceUsuario.lanzarDado();
-		Tirada t = new Tirada();
-		t.setIdUsuario(afortunado.getId());
+    Usuario afortunado = this.serviceUsuario.lanzarDado();
+    Tirada t = new Tirada();
+    t.setIdUsuario(afortunado.getId());
 
-		serviceTirada.lanzarDado(t);
-		model.addAttribute("afortunado", afortunado.getNombre());
+    this.serviceTirada.lanzarDado(t);
+    model.addAttribute("afortunado", afortunado.getNombre());
 
-		model.addAttribute("usuarios", this.serviceUsuario.ranking());
-		return "index";
-	}
+    model.addAttribute("usuarios", this.serviceUsuario.ranking());
+    return "index";
+  }
 
-	@RequestMapping(value = "/estadisticas", method = RequestMethod.GET)
-	public String listarEstadisticas(Model model) {
-		LOG.info("estadisticas");
+  /**
+   * Estadisticas de las tiradas
+   * 
+   * @param model
+   *          atributos para laJSP
+   * @return vista de las estadicitcas
+   */
+  @RequestMapping(value = "/estadisticas", method = RequestMethod.GET)
+  public String listarEstadisticas(Model model) {
+    LOG.info("estadisticas");
 
-		model.addAttribute("estadisticas", this.serviceEstadisticas.lanzamientosTotales());
+    model.addAttribute("total", this.serviceEstadisticas.lanzamientosTotales());
+    model.addAttribute("estadisticas", this.serviceEstadisticas.todasTiradas());
 
-		return "estadisticas/index";
-	}
+    return "estadisticas/index";
+  }
 
 }

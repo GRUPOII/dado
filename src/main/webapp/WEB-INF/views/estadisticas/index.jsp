@@ -6,7 +6,9 @@
 
 <div class="row">
 	<div class="col-md-6">
-	<h2>Tiradas totales realizadas ${estadisticas}</h2>
+	<h2>Tiradas totales realizadas ${total}</h2>
+	
+	${estadisticas}
 
 
 		

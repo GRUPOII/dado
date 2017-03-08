@@ -3,13 +3,35 @@ package com.ipartek.formacion.service;
 import java.util.List;
 
 import com.ipartek.formacion.domain.Estadistica;
+import com.ipartek.formacion.domain.Tirada;
 
+/**
+ * Interfaz que hace implemtentar una serie de estaditicas
+ * 
+ * @author Curso
+ *
+ */
 public interface ServiceEstadistica {
 
+  /**
+   * Porcentaje de cada usuario resultante en las tiradas
+   * 
+   * @return Lista de los resultados
+   */
   List<Estadistica> porcentajes();
 
+  /**
+   * Numero de tiradas toales realizadas
+   * 
+   * @return numero total de tiradas
+   */
   int lanzamientosTotales();
 
-  // List<Tirada> ultimasTiradas();
+  /**
+   * Todas las toiradas
+   * 
+   * @return lista de todas laas tiradas
+   */
+  List<Tirada> todasTiradas();
 
 }

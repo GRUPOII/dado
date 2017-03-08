@@ -8,38 +8,72 @@ package com.ipartek.formacion.domain;
  */
 public class Ranking {
 
-	private String nombre;
-	private int tiradas;
+  private String nombre;
+  private int tiradas;
 
-	public Ranking() {
-		super();
-	}
+  /**
+   * Constructor sin poarametros
+   */
+  public Ranking() {
+    super();
+  }
 
-	public Ranking(String nombre, int tiradas) {
-		super();
-		this.nombre = nombre;
-		this.tiradas = tiradas;
-	}
+  /**
+   * Construcutor de ranking con todos los parametros
+   * 
+   * @param nombre
+   *          del usuario
+   * @param tiradas
+   *          en las que el usuario reulto
+   */
+  public Ranking(String nombre, int tiradas) {
+    super();
+    this.nombre = nombre;
+    this.tiradas = tiradas;
+  }
 
-	public String getNombre() {
-		return nombre;
-	}
+  /**
+   * Getter nombre usuario
+   * 
+   * @return nombre usuario
+   */
+  public String getNombre() {
+    return this.nombre;
+  }
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+  /**
+   * Setter del nombre de usuario
+   * 
+   * @param nombre
+   *          de usuario
+   */
 
-	public int getTiradas() {
-		return tiradas;
-	}
+  public void setNombre(String nombre) {
+    this.nombre = nombre;
+  }
 
-	public void setTiradas(int tiradas) {
-		this.tiradas = tiradas;
-	}
+  /**
+   * Getter de las tiradas d eun usuario concreto
+   * 
+   * @return tiradas de usuario
+   */
+  public int getTiradas() {
+    return this.tiradas;
+  }
 
-	@Override
-	public String toString() {
-		return "Ranking [nombre=" + nombre + ", tiradas=" + tiradas + "]";
-	}
+  /**
+   * Setter de tiradas de un usuario
+   * 
+   * @param tiradas
+   *          de usauri
+   */
+  public void setTiradas(int tiradas) {
+    this.tiradas = tiradas;
+  }
+
+  @Override()
+  public String toString() {
+    return "Ranking [nombre=" + this.nombre + ", tiradas=" + this.tiradas + "]";
+  }
 
 }

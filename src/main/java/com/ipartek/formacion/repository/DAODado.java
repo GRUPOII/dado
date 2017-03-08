@@ -12,12 +12,27 @@ import com.ipartek.formacion.domain.Tirada;
  */
 public interface DAODado {
 
+  /**
+   * Lista todos las tiradas realizadas
+   * 
+   * @return lista de las toiradas
+   */
   List<Tirada> getAll();
 
+  /**
+   * Lanza el dado
+   * 
+   * @param t
+   *          tirada realizada
+   * @return true si inserta la tirada en la BD, false en caso contrario
+   */
   boolean lanzarDado(Tirada t);
 
+  /**
+   * Numero total de tiradas realizadas
+   * 
+   * @return nuemro total de tiradas
+   */
   int total();
-
-  // List<Tirada> getUltimos();
 
 }

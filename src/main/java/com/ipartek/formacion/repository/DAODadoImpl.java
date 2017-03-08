@@ -22,6 +22,12 @@ import org.springframework.stereotype.Repository;
 import com.ipartek.formacion.domain.Tirada;
 import com.ipartek.formacion.repository.mapper.TiradaMapper;
 
+/**
+ * DAO para manejar todos los datos referidos a las tiradas
+ * 
+ * @author Curso
+ *
+ */
 @Repository(value = "daoDado")
 public class DAODadoImpl implements DAODado {
 
@@ -31,6 +37,12 @@ public class DAODadoImpl implements DAODado {
   private DataSource dataSource;
   private JdbcTemplate jdbcTemplate;
 
+  /**
+   * Conexion Base de datos
+   * 
+   * @param ds
+   *          datasource base de datos
+   */
   @Autowired()
   public void setDatasource(DataSource ds) {
     this.dataSource = ds;
@@ -43,7 +55,7 @@ public class DAODadoImpl implements DAODado {
   private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
   private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha DESC, tirada.id DESC LIMIT 10;";
 
-  @Override
+  @Override()
   public boolean lanzarDado(final Tirada t) {
     boolean resul = false;
     try {
@@ -51,7 +63,7 @@ public class DAODadoImpl implements DAODado {
       KeyHolder keyHolder = new GeneratedKeyHolder();
 
       affectedRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
-        @Override
+        @Override()
         public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
           final PreparedStatement ps = conn.prepareStatement(SQL_INSERT,
               Statement.RETURN_GENERATED_KEYS);
@@ -71,14 +83,14 @@ public class DAODadoImpl implements DAODado {
     return resul;
   }
 
-  @Override
+  @Override()
   public int total() {
     int resul;
     resul = this.jdbcTemplate.queryForInt(SQL_COUNT);
     return resul;
   }
 
-  @Override
+  @Override()
   public List<Tirada> getAll() {
     ArrayList<Tirada> lista = new ArrayList<Tirada>();
     try {
@@ -90,13 +102,5 @@ public class DAODadoImpl implements DAODado {
     }
     return lista;
   }
-
-  /*
-   * @Override public List<Tirada> getUltimos() { ArrayList<Lanzamiento> lista = new
-   * ArrayList<Lanzamientos>(); try { lista = (ArrayList<Lanzamientos>)
-   * this.jdbcTemplate.query(SQL_ULTIMAS, new Object[] { n }, new LanzamientoMapper()); } catch
-   * (EmptyResultDataAccessException e) { this.logger.warn("No existen tiradas todavia"); } catch
-   * (Exception e) { this.logger.error(e.getMessage()); } return lista; }
-   */
 
 }

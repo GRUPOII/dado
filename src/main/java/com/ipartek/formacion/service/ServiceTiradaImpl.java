@@ -9,20 +9,26 @@ import com.ipartek.formacion.domain.Tirada;
 import com.ipartek.formacion.repository.DAODado;
 import com.ipartek.formacion.repository.DAOUsuario;
 
+/**
+ * Servicio para manejar todso lo referido a las tiradas
+ * 
+ * @author Curso
+ *
+ */
 @Service(value = "serviceTirada")
 public class ServiceTiradaImpl implements ServiceTirada {
-	private final Log LOG = LogFactory.getLog(getClass());
+  private final Log LOG = LogFactory.getLog(getClass());
 
-	@Autowired()
-	private DAOUsuario daoUsuario;
+  @Autowired()
+  private DAOUsuario daoUsuario;
 
-	@Autowired()
-	private DAODado daoDado;
+  @Autowired()
+  private DAODado daoDado;
 
-	@Override
-	public boolean lanzarDado(Tirada t) {
-		this.LOG.trace("Tiramos dado: ");
-		return this.daoDado.lanzarDado(t);
-	}
+  @Override()
+  public boolean lanzarDado(Tirada t) {
+    this.LOG.trace("Tiramos dado: ");
+    return this.daoDado.lanzarDado(t);
+  }
 
 }

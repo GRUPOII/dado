@@ -7,16 +7,22 @@ import org.springframework.jdbc.core.RowMapper;
 
 import com.ipartek.formacion.domain.Ranking;
 
+/**
+ * Calse para mappear el ranking
+ * 
+ * @author Curso
+ *
+ */
 public class RankingMapper implements RowMapper<Ranking> {
 
-	@Override
-	public Ranking mapRow(ResultSet rs, int rowNum) throws SQLException {
-		Ranking r = new Ranking();
+  @Override()
+  public Ranking mapRow(ResultSet rs, int rowNum) throws SQLException {
+    Ranking r = new Ranking();
 
-		r.setNombre(rs.getString("nombre"));
-		r.setTiradas(rs.getInt("tiradas"));
+    r.setNombre(rs.getString("nombre"));
+    r.setTiradas(rs.getInt("tiradas"));
 
-		return r;
-	}
+    return r;
+  }
 
 }
