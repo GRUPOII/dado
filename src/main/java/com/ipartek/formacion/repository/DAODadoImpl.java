@@ -61,10 +61,10 @@ public class DAODadoImpl implements DAODado {
   public boolean lanzarDado(final Tirada t) {
     boolean resul = false;
     try {
-      int affectedRows = -1;
+
       KeyHolder keyHolder = new GeneratedKeyHolder();
 
-      affectedRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
+      int affectedRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
         @Override()
         public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
           final PreparedStatement ps = conn.prepareStatement(SQL_INSERT,

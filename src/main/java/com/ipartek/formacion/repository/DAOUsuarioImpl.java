@@ -108,10 +108,10 @@ public class DAOUsuarioImpl implements DAOUsuario {
     boolean resul = false;
 
     try {
-      int affectedeRows = -1;
+
       KeyHolder keyHolder = new GeneratedKeyHolder();
 
-      affectedeRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
+      int affectedeRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
 
         @Override()
         public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
