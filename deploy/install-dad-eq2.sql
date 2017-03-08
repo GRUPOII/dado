@@ -13,24 +13,21 @@
 
 
 -- Volcando estructura de base de datos para dado-eq2
-DROP DATABASE IF EXISTS `dado-eq2`;
 CREATE DATABASE IF NOT EXISTS `dado-eq2` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `dado-eq2`;
 
 -- Volcando estructura para tabla dado-eq2.tirada
-DROP TABLE IF EXISTS `tirada`;
 CREATE TABLE IF NOT EXISTS `tirada` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `fecha` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `usuario_id` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fk_tirada_usuario_idx` (`usuario_id`),
-  CONSTRAINT `fk_tirada_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+  CONSTRAINT `fk_tirada_usuario` FOREIGN KEY (`usuario_id`) REFERENCES `usuario` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=61 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 -- Volcando estructura para tabla dado-eq2.usuario
-DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE IF NOT EXISTS `usuario` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `nombre` varchar(45) NOT NULL,
@@ -38,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `usuario` (
   `fecha_modificacion` timestamp NULL DEFAULT NULL,
   `fecha_baja` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8;
 
 -- La exportación de datos fue deseleccionada.
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
