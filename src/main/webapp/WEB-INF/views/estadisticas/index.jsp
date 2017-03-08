@@ -1,10 +1,9 @@
-<%@ include file="../includes/header.jsp" %> 
+<%@ include file="../includes/header.jsp"%>
 
-<h1>Estadisticas</h1>
-
-
+<h2 id="h2center">Estadisticas</h2>
 
 <div class="row">
+
 	<div class="col-md-6">
 	<h2>Tiradas totales realizadas ${total}</h2>
 	
@@ -20,4 +19,4 @@
 <!-- <div class="row"> -->
 
 
-<%@ include file="../includes/footer.jsp" %>
+<%@ include file="../includes/footer.jsp"%>

@@ -1,9 +1,12 @@
-.col-md-4 h2 {
-	text-align: center;
+.dado {
+	border-color: grey;
+	border-style: solid;
+	border-width: 1px;
+	border-radius: 5px;
 }
 
-.col-md-8 img {
- 	
+#h2center {
+	text-align: center;
 }
 
 
