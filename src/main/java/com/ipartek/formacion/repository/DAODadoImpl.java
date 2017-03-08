@@ -19,7 +19,9 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+import com.ipartek.formacion.domain.Lanzamiento;
 import com.ipartek.formacion.domain.Tirada;
+import com.ipartek.formacion.repository.mapper.LanzamientoMapper;
 import com.ipartek.formacion.repository.mapper.TiradaMapper;
 
 /**
@@ -53,7 +55,7 @@ public class DAODadoImpl implements DAODado {
   private static final String SQL_INSERT = "INSERT INTO `tirada` (`usuario_id`) VALUES (?);";
   private static final String SQL_COUNT = "SELECT COUNT(id) FROM tirada;";
   private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
-  private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha DESC, tirada.id DESC LIMIT 10;";
+  private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha ASC, tirada.id ASC LIMIT 10;";
 
   @Override()
   public boolean lanzarDado(final Tirada t) {
@@ -95,6 +97,20 @@ public class DAODadoImpl implements DAODado {
     ArrayList<Tirada> lista = new ArrayList<Tirada>();
     try {
       lista = (ArrayList<Tirada>) this.jdbcTemplate.query(SQL_GET_ALL, new TiradaMapper());
+    } catch (EmptyResultDataAccessException e) {
+      this.LOG.warn("No existen tiradas todavia");
+    } catch (Exception e) {
+      this.LOG.error(e.getMessage());
+    }
+    return lista;
+  }
+
+  @Override()
+  public List<Lanzamiento> getAllLanzamientos() {
+    ArrayList<Lanzamiento> lista = new ArrayList<Lanzamiento>();
+    try {
+      lista = (ArrayList<Lanzamiento>) this.jdbcTemplate.query(SQL_ULTIMAS,
+          new LanzamientoMapper());
     } catch (EmptyResultDataAccessException e) {
       this.LOG.warn("No existen tiradas todavia");
     } catch (Exception e) {

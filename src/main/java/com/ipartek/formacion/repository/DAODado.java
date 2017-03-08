@@ -2,6 +2,7 @@ package com.ipartek.formacion.repository;
 
 import java.util.List;
 
+import com.ipartek.formacion.domain.Lanzamiento;
 import com.ipartek.formacion.domain.Tirada;
 
 /**
@@ -18,6 +19,13 @@ public interface DAODado {
    * @return lista de las toiradas
    */
   List<Tirada> getAll();
+
+  /**
+   * Lista todos las tiradas realizadas
+   * 
+   * @return lista de las toiradas
+   */
+  List<Lanzamiento> getAllLanzamientos();
 
   /**
    * Lanza el dado

@@ -99,7 +99,7 @@ public class HomeController {
     LOG.info("estadisticas");
 
     model.addAttribute("total", this.serviceEstadisticas.lanzamientosTotales());
-    model.addAttribute("estadisticas", this.serviceEstadisticas.todasTiradas());
+    model.addAttribute("estadisticas", this.serviceEstadisticas.lanzamientosGetAll());
 
     return "estadisticas/index";
   }

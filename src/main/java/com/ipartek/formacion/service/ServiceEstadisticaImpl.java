@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ipartek.formacion.domain.Estadistica;
+import com.ipartek.formacion.domain.Lanzamiento;
 import com.ipartek.formacion.domain.Tirada;
 import com.ipartek.formacion.repository.DAODado;
 
@@ -30,6 +31,12 @@ public class ServiceEstadisticaImpl implements ServiceEstadistica {
   @Override()
   public int lanzamientosTotales() {
     return this.daoDado.total();
+
+  }
+
+  @Override()
+  public List<Lanzamiento> lanzamientosGetAll() {
+    return this.daoDado.getAllLanzamientos();
 
   }
 

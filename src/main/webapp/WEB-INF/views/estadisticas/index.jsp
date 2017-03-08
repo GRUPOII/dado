@@ -15,16 +15,16 @@
 			<thead>
 				<tr>
 					<th>ID</th>
+					<th>NOMBRE</th>
 					<th>FECHA</th>
-					<th>ID USUARIO</th>
 				</tr>
 			</thead>
 			<tbody>
 				<c:forEach items="${estadisticas}" var="e">
 					<tr>
 						<td>${e.id}</td>
-						<td>${e.fechaTirada}</td>
-						<td>${e.idUsuario}</td>
+						<td>${e.nombre}</td>
+						<td>${e.fecha}</td>
 						
 					</tr>
 				</c:forEach>
