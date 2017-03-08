@@ -25,82 +25,78 @@ import com.ipartek.formacion.repository.mapper.TiradaMapper;
 @Repository(value = "daoDado")
 public class DAODadoImpl implements DAODado {
 
-	private final Log LOG = LogFactory.getLog(getClass());
+  private final Log LOG = LogFactory.getLog(getClass());
 
-	@Autowired()
-	private DataSource dataSource;
-	private JdbcTemplate jdbcTemplate;
+  @Autowired()
+  private DataSource dataSource;
+  private JdbcTemplate jdbcTemplate;
 
-	@Autowired()
-	public void setDatasource(DataSource ds) {
-		this.dataSource = ds;
-		this.jdbcTemplate = new JdbcTemplate(this.dataSource);
-	}
+  @Autowired()
+  public void setDatasource(DataSource ds) {
+    this.dataSource = ds;
+    this.jdbcTemplate = new JdbcTemplate(this.dataSource);
+  }
 
-	// Sentencias SQL
-	private static final String SQL_INSERT = "INSERT INTO `tirada` (`usuario_id`) VALUES (?);";
-	private static final String SQL_COUNT = "SELECT COUNT(id) FROM tirada;";
-	private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
-	private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha DESC, tirada.id DESC LIMIT 10;";
-	@Override
-	public boolean lanzarDado(final Tirada t) {
-		boolean resul = false;
-		try {
-			int affectedRows = -1;
-			KeyHolder keyHolder = new GeneratedKeyHolder();
+  // Sentencias SQL
+  private static final String SQL_INSERT = "INSERT INTO `tirada` (`usuario_id`) VALUES (?);";
+  private static final String SQL_COUNT = "SELECT COUNT(id) FROM tirada;";
+  private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
+  private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha DESC, tirada.id DESC LIMIT 10;";
 
-			affectedRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
-				@Override
-				public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
-					final PreparedStatement ps = conn.prepareStatement(SQL_INSERT, Statement.RETURN_GENERATED_KEYS);
-					ps.setLong(1, t.getIdUsuario());
-					return ps;
-				}
-			}, keyHolder);
+  @Override
+  public boolean lanzarDado(final Tirada t) {
+    boolean resul = false;
+    try {
+      int affectedRows = -1;
+      KeyHolder keyHolder = new GeneratedKeyHolder();
 
-			if (affectedRows == 1) {
-				resul = true;
-				t.setId((int) keyHolder.getKey().longValue());
-			}
+      affectedRows = this.jdbcTemplate.update(new PreparedStatementCreator() {
+        @Override
+        public PreparedStatement createPreparedStatement(Connection conn) throws SQLException {
+          final PreparedStatement ps = conn.prepareStatement(SQL_INSERT,
+              Statement.RETURN_GENERATED_KEYS);
+          ps.setLong(1, t.getIdUsuario());
+          return ps;
+        }
+      }, keyHolder);
 
-		} catch (Exception e) {
-			this.LOG.error(e.getMessage());
-		}
-		return resul;
-	}
+      if (affectedRows == 1) {
+        resul = true;
+        t.setId((int) keyHolder.getKey().longValue());
+      }
 
-	@Override
-	public int total() {
-		int resul;
-		resul = this.jdbcTemplate.queryForInt(SQL_COUNT);
-		return resul;
-	}
+    } catch (Exception e) {
+      this.LOG.error(e.getMessage());
+    }
+    return resul;
+  }
 
-	@Override
-	public List<Tirada> getAll() {
-		ArrayList<Tirada> lista = new ArrayList<Tirada>();
-		try {
-			lista = (ArrayList<Tirada>) this.jdbcTemplate.query(SQL_GET_ALL, new TiradaMapper());
-		} catch (EmptyResultDataAccessException e) {
-			this.LOG.warn("No existen tiradas todavia");
-		} catch (Exception e) {
-			this.LOG.error(e.getMessage());
-		}
-		return lista;
-	}
+  @Override
+  public int total() {
+    int resul;
+    resul = this.jdbcTemplate.queryForInt(SQL_COUNT);
+    return resul;
+  }
 
-	@Override
-	public List<Tirada> getUltimos() {
-		ArrayList<Lanzamiento> lista = new ArrayList<Lanzamientos>();
-		try {
-			lista = (ArrayList<Lanzamientos>) this.jdbcTemplate.query(SQL_ULTIMAS_TIRADAS, new Object[] { n },
-					new LanzamientoMapper());
-		} catch (EmptyResultDataAccessException e) {
-			this.logger.warn("No existen tiradas todavia");
-		} catch (Exception e) {
-			this.logger.error(e.getMessage());
-		}
-		return lista;
-	}
+  @Override
+  public List<Tirada> getAll() {
+    ArrayList<Tirada> lista = new ArrayList<Tirada>();
+    try {
+      lista = (ArrayList<Tirada>) this.jdbcTemplate.query(SQL_GET_ALL, new TiradaMapper());
+    } catch (EmptyResultDataAccessException e) {
+      this.LOG.warn("No existen tiradas todavia");
+    } catch (Exception e) {
+      this.LOG.error(e.getMessage());
+    }
+    return lista;
+  }
+
+  /*
+   * @Override public List<Tirada> getUltimos() { ArrayList<Lanzamiento> lista = new
+   * ArrayList<Lanzamientos>(); try { lista = (ArrayList<Lanzamientos>)
+   * this.jdbcTemplate.query(SQL_ULTIMAS, new Object[] { n }, new LanzamientoMapper()); } catch
+   * (EmptyResultDataAccessException e) { this.logger.warn("No existen tiradas todavia"); } catch
+   * (Exception e) { this.logger.error(e.getMessage()); } return lista; }
+   */
 
 }

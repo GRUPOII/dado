@@ -3,14 +3,13 @@ package com.ipartek.formacion.service;
 import java.util.List;
 
 import com.ipartek.formacion.domain.Estadistica;
-import com.ipartek.formacion.domain.Tirada;
 
 public interface ServiceEstadistica {
 
-	List<Estadistica> porcentajes();
+  List<Estadistica> porcentajes();
 
-	int lanzamientosTotales();
+  int lanzamientosTotales();
 
-	List<Tirada> ultimasTiradas();
+  // List<Tirada> ultimasTiradas();
 
 }

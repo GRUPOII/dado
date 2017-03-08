@@ -12,12 +12,12 @@ import com.ipartek.formacion.domain.Tirada;
  */
 public interface DAODado {
 
-	List<Tirada> getAll();
+  List<Tirada> getAll();
 
-	boolean lanzarDado(Tirada t);
+  boolean lanzarDado(Tirada t);
 
-	int total();
+  int total();
 
-	List<Tirada> getUltimos();
+  // List<Tirada> getUltimos();
 
 }
