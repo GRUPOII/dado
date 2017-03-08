@@ -65,8 +65,8 @@ public class AdminController {
         msg = "Usuario Eliminada con exito";
       }
     } catch (DataIntegrityViolationException e) {
-      LOG.info("Integridad de datos violada en eliminar usuario");
-      msg = e.getMessage();
+      LOG.error("Integridad de datos violada en eliminar usuario", e);
+
     }
     model.addAttribute("msg", msg);
     model.addAttribute("usuarios", this.serviceUsuario.listar());

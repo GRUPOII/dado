@@ -35,6 +35,11 @@ public interface ServiceEstadistica {
    */
   List<Tirada> todasTiradas();
 
+  /**
+   * Obtiene topdos los lanzacmientosa
+   * 
+   * @return array list de todsos los lanzamientos
+   */
   List<Lanzamiento> lanzamientosGetAll();
 
 }
