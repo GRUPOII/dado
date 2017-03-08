@@ -28,7 +28,7 @@ public class Lanzamiento {
    * @return id
    */
   public long getId() {
-    return id;
+    return this.id;
   }
 
   /**
@@ -47,7 +47,7 @@ public class Lanzamiento {
    * @return nombre del usario
    */
   public String getNombre() {
-    return nombre;
+    return this.nombre;
   }
 
   /**
@@ -66,7 +66,7 @@ public class Lanzamiento {
    * @return fecha de la tirada
    */
   public String getFecha() {
-    return fecha;
+    return this.fecha;
   }
 
   /**
@@ -81,7 +81,8 @@ public class Lanzamiento {
 
   @Override()
   public String toString() {
-    return "Lanzamientos [id=" + id + ", nombre=" + nombre + ", fecha=" + fecha + "]";
+    return "Lanzamientos [id=" + this.id + ", nombre=" + this.nombre + ", fecha=" + this.fecha
+        + "]";
   }
 
 }

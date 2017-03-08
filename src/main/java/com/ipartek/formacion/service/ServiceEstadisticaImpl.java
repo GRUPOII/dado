@@ -36,7 +36,7 @@ public class ServiceEstadisticaImpl implements ServiceEstadistica {
   @Override()
   public List<Tirada> todasTiradas() {
 
-    return daoDado.getAll();
+    return this.daoDado.getAll();
   }
 
 }
