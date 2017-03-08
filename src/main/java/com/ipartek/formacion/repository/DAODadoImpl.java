@@ -80,7 +80,7 @@ public class DAODadoImpl implements DAODado {
       }
 
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return resul;
   }
@@ -98,9 +98,9 @@ public class DAODadoImpl implements DAODado {
     try {
       lista = (ArrayList<Tirada>) this.jdbcTemplate.query(SQL_GET_ALL, new TiradaMapper());
     } catch (EmptyResultDataAccessException e) {
-      this.LOG.warn("No existen tiradas todavia");
+      this.LOG.warn("No existen tiradas todavia", e);
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return lista;
   }
@@ -112,9 +112,9 @@ public class DAODadoImpl implements DAODado {
       lista = (ArrayList<Lanzamiento>) this.jdbcTemplate.query(SQL_ULTIMAS,
           new LanzamientoMapper());
     } catch (EmptyResultDataAccessException e) {
-      this.LOG.warn("No existen tiradas todavia");
+      this.LOG.warn("No existen tiradas todavia", e);
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return lista;
   }

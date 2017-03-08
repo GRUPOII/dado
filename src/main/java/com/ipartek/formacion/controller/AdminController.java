@@ -94,8 +94,8 @@ public class AdminController {
         msg = "Usuario dado de baja con exito";
       }
     } catch (DataIntegrityViolationException e) {
-      LOG.info("Integridad de datos violada en baja usuario");
-      msg = e.getMessage();
+      LOG.error("Integridad de datos violada en baja usuario", e);
+
     }
     model.addAttribute("msg", msg);
     model.addAttribute("usuarios", this.serviceUsuario.listar());
@@ -123,7 +123,7 @@ public class AdminController {
         msg = "Usuario dado de alta con exito";
       }
     } catch (DataIntegrityViolationException e) {
-      LOG.info("Integridad de datos violada al dar de alta a un usuario");
+      LOG.error("Integridad de datos violada al dar de alta a un usuario", e);
       msg = e.getMessage();
     }
     model.addAttribute("msg", msg);
