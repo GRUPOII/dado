@@ -55,7 +55,7 @@ public class DAODadoImpl implements DAODado {
   private static final String SQL_INSERT = "INSERT INTO `tirada` (`usuario_id`) VALUES (?);";
   private static final String SQL_COUNT = "SELECT COUNT(id) FROM tirada;";
   private static final String SQL_GET_ALL = "SELECT `id`, `fecha`, `usuario_id` FROM `tirada` ORDER BY `id` DESC LIMIT 500;";
-  private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha ASC, tirada.id ASC LIMIT 10;";
+  private static final String SQL_ULTIMAS = "SELECT tirada.id, usuario.nombre, tirada.fecha FROM tirada, usuario WHERE usuario.id = tirada.usuario_id ORDER BY fecha ASC, tirada.id ASC LIMIT 50;";
 
   @Override()
   public boolean lanzarDado(final Tirada t) {
