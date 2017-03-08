@@ -70,11 +70,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
     } catch (EmptyResultDataAccessException e) {
 
-      this.LOG.warn("No existen usuarios todavia");
+      this.LOG.error("No existen usuarios todavia", e);
 
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
     return lista;
@@ -90,11 +90,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
     } catch (EmptyResultDataAccessException e) {
 
-      this.LOG.warn("No existen usuarios todavia");
+      this.LOG.error("No existen usuarios todavia", e);
 
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
 
@@ -128,7 +128,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
       }
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
 
@@ -152,7 +152,7 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
 
@@ -173,11 +173,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
         resul = true;
       }
     } catch (DataIntegrityViolationException e) {
-      this.LOG.warn(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
 
@@ -194,11 +194,11 @@ public class DAOUsuarioImpl implements DAOUsuario {
 
     } catch (EmptyResultDataAccessException e) {
 
-      this.LOG.warn("No existen usuarios todavia");
+      this.LOG.error("No existen usuarios todavia", e);
 
     } catch (Exception e) {
 
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
 
     }
     return lista;
@@ -211,9 +211,9 @@ public class DAOUsuarioImpl implements DAOUsuario {
       lista = (ArrayList<Usuario>) this.jdbcTemplate.query(SQL_GET_ALL_USUARIOS_ALTA,
           new UsuarioMapper());
     } catch (EmptyResultDataAccessException e) {
-      this.LOG.warn("No existen usuarios todavia");
+      this.LOG.error("No existen usuarios todavia", e);
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return lista;
   }
@@ -227,9 +227,9 @@ public class DAOUsuarioImpl implements DAOUsuario {
         resul = true;
       }
     } catch (DataIntegrityViolationException e) {
-      this.LOG.warn(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return resul;
   }
@@ -243,9 +243,9 @@ public class DAOUsuarioImpl implements DAOUsuario {
         resul = true;
       }
     } catch (DataIntegrityViolationException e) {
-      this.LOG.warn(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     } catch (Exception e) {
-      this.LOG.error(e.getMessage());
+      this.LOG.error(e.getMessage(), e);
     }
     return resul;
   }
