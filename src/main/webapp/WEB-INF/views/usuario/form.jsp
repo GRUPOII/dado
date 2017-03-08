@@ -1,44 +1,47 @@
-<%@ include file="../includes/header.jsp" %> 
-
-<a href="admin">Volver</a>
+<%@ include file="../includes/header.jsp"%>
 
 <c:if test="${not empty usuario.nombre}">
-	<h1>${usuario.nombre}</h1>
+	<h2>${usuario.nombre}</h2>
 </c:if>
 
 <c:if test="${empty usuario.nombre}">
-	<h1>Crear nuevo usuario</h1>
+	<h2>Crear nuevo usuario</h2>
 </c:if>
-
-
 
 ${msg}
 
 <div class="row">
-<div class="col-md-6">
-	<form:form action="admin/usuario/crear" modelAttribute="usuario">
-	
-		<form:input path="id" readonly="true"/><br>
-		<form:input path="nombre"/><br>	
-		<form:errors path="nombre" cssStyle="color:red;"/><br>
+	<div class="col-md-6">
+		<form:form action="admin/usuario/crear" modelAttribute="usuario">
 
-		<br>
-		
+			<form:hidden path="id" readonly="true" />
+			<br>
+			<form:label path="nombre">Nombre:</form:label>
+			<form:input path="nombre" />
+			<br>
+			<form:errors path="nombre" cssStyle="color:red;" />
+			<br>
+
 			<c:choose>
-			<c:when test="${usuario.id == -1}">
-				<form:button type="submit">Crear</form:button>
-			</c:when>
-			<c:otherwise>
-				<form:button type="submit">Modificar</form:button>
-			</c:otherwise>
-		</c:choose>
-	
-	</form:form>
-</div>
+				<c:when test="${usuario.id == -1}">
+					<form:button type="submit">Crear</form:button>
+				</c:when>
+				<c:otherwise>
+					<form:button type="submit">Modificar</form:button>
+				</c:otherwise>
+			</c:choose>
 
-</div><!-- <div class="row"> -->
+			<form action="admin">
+				<input type="submit" value="Volver" />
+			</form>
+
+		</form:form>
+	</div>
+
+</div>
+<!-- <div class="row"> -->
 
 <c:if test="${usuario.id != -1}">
 	<br>
-	<a style="color:red;" href="admin/usuario/delete/${usuario.id}">Eliminar</a>
+	<a style="color: red;" href="admin/usuario/delete/${usuario.id}">Eliminar</a>
 </c:if>
